@@ -1,0 +1,31 @@
+{
+    "Services": {
+        "redis": {
+            "Name": "redis",
+            "Labels": {
+                "name": "redis"
+            },
+            "TaskTemplate": {
+                "ContainerSpec": {
+                    "Image": "redis"
+                }
+            },
+            "Networks": [
+                "ingress"
+                ],
+            "EndpointSpec": {
+                "Mode": "vip",
+                "Ports": [
+                {
+                    "Name": "pbport",
+                    "Protocol": "tcp",
+                    "TargetPort": 6379,
+                    "PublishedPort": 6379
+                }
+                ]
+            }
+        }
+    },
+    "Version": "1"
+}
+

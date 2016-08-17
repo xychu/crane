@@ -1,0 +1,31 @@
+{
+    "Services": {
+        "nginx": {
+            "Name": "nginx",
+            "Labels": {
+                "name": "nginx"
+            },
+            "TaskTemplate": {
+                "ContainerSpec": {
+                    "Image": "nginx"
+                }
+            },
+            "Networks": [
+                "ingress"
+                ],
+            "EndpointSpec": {
+                "Mode": "vip",
+                "Ports": [
+                {
+                    "Name": "pbport",
+                    "Protocol": "tcp",
+                    "TargetPort": 80,
+                    "PublishedPort": 8000
+                }
+                ]
+            }
+        }
+    },
+    "Version": "1"
+}
+
