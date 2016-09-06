@@ -38,6 +38,8 @@ func (api *Api) ApiRouter() *gin.Engine {
 			a.TokenStore = token_store.NewDefaultStore()
 		} else if api.Config.AccountTokenStore == "cookie_store" {
 			a.TokenStore = token_store.NewCookieStore()
+		} else if api.Config.AccountTokenStore == "consul_store" {
+			a.TokenStore = token_store.NewConsulStore()
 		}
 
 		if api.Config.AccountAuthenticator == "default" {
@@ -45,7 +47,6 @@ func (api *Api) ApiRouter() *gin.Engine {
 		} else if api.Config.AccountAuthenticator == "db" {
 			a.Authenticator = authenticators.NewDBAuthenticator()
 		}
-
 		Authorization = chains.Authorization(a)
 		AuthorizeServiceAccess = chains.AuthorizeServiceAccess(a)
 
